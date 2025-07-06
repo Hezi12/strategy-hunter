@@ -141,7 +141,7 @@ yarn-error.log*
 *.rar
 
 # Large data files (uncomment if needed)
-# *.csv
+*.csv
 # *.json
 # *.parquet
 
