@@ -7,7 +7,7 @@
       "use": "@vercel/python",
       "config": {
         "maxLambdaSize": "15mb",
-        "runtime": "python3.9",
+        "runtime": "python3.11",
         "maxDuration": 30
       }
     }
@@ -20,6 +20,8 @@
   ],
   "env": {
     "PYTHONPATH": "/var/task",
-    "FLASK_ENV": "production"
+    "FLASK_ENV": "production",
+    "PYTHONUNBUFFERED": "1",
+    "PIP_NO_CACHE_DIR": "1"
   }
 } 
