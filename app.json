@@ -1,0 +1,45 @@
+{
+  "name": "NQ Strategy Hunter",
+  "description": "AI-Powered Trading Strategy Discovery for NQ Futures",
+  "repository": "https://github.com/Hezi12/strategy-hunter",
+  "logo": "https://your-domain.com/logo.png",
+  "keywords": [
+    "trading",
+    "ai",
+    "genetic-algorithm",
+    "nq-futures",
+    "strategy-discovery",
+    "python",
+    "flask"
+  ],
+  "success_url": "/",
+  "env": {
+    "SECRET_KEY": {
+      "description": "Secret key for Flask sessions",
+      "generator": "secret",
+      "required": true
+    },
+    "FLASK_ENV": {
+      "description": "Flask environment",
+      "value": "production",
+      "required": false
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "hobby"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "addons": [],
+  "stack": "heroku-22",
+  "website": "https://your-domain.com",
+  "scripts": {
+    "postdeploy": "echo 'NQ Strategy Hunter deployed successfully!'"
+  }
+} 

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מערכת חיפוש אסטרטגיות NQ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .main-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-top: 50px;
+            padding: 40px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+        .status-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #e9ecef;
+        }
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .status-running {
+            color: #28a745;
+        }
+        .status-stopped {
+            color: #dc3545;
+        }
+        .status-error {
+            color: #ffc107;
+        }
+        .control-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .control-btn {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 200px;
+        }
+        .btn-start {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+        }
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+        }
+        .btn-stop {
+            background: linear-gradient(45deg, #dc3545, #fd7e14);
+            color: white;
+        }
+        .btn-stop:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+        }
+        .btn-results {
+            background: linear-gradient(45deg, #007bff, #6610f2);
+            color: white;
+        }
+        .btn-results:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .info-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+        }
+        .info-card i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        .info-card h5 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .info-card p {
+            color: #7f8c8d;
+            margin: 0;
+        }
+        .alert {
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .spinner {
+            display: none;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-container">
+            <div class="header">
+                <h1><i class="fas fa-chart-line"></i> מערכת חיפוש אסטרטגיות NQ</h1>
+                <p>מערכת אוטונומית לחיפוש אסטרטגיות מסחר מנצחות</p>
+            </div>
+
+            <!-- Status Card -->
+            <div class="status-card">
+                <div class="status-indicator">
+                    {% if status.status == 'running' %}
+                        <i class="fas fa-play-circle status-running" style="font-size: 3rem;"></i>
+                        <div class="ms-3">
+                            <h4 class="text-success">המערכת פועלת</h4>
+                            <p class="mb-0">עדכון אחרון: {{ status.last_update }}</p>
+                        </div>
+                    {% elif status.status == 'stopped' %}
+                        <i class="fas fa-stop-circle status-stopped" style="font-size: 3rem;"></i>
+                        <div class="ms-3">
+                            <h4 class="text-danger">המערכת עצורה</h4>
+                            <p class="mb-0">לחץ להפעלה</p>
+                        </div>
+                    {% else %}
+                        <i class="fas fa-exclamation-triangle status-error" style="font-size: 3rem;"></i>
+                        <div class="ms-3">
+                            <h4 class="text-warning">שגיאה במערכת</h4>
+                            <p class="mb-0">בדוק את החיבור</p>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Control Buttons -->
+                <div class="control-buttons">
+                    <button class="control-btn btn-start" onclick="startSystem()">
+                        <i class="fas fa-play"></i> הפעל מערכת
+                    </button>
+                    <button class="control-btn btn-stop" onclick="stopSystem()">
+                        <i class="fas fa-stop"></i> עצור מערכת
+                    </button>
+                    <button class="control-btn btn-results" onclick="viewResults()">
+                        <i class="fas fa-chart-bar"></i> הצג תוצאות
+                    </button>
+                </div>
+
+                <!-- Loading Spinner -->
+                <div class="spinner">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">טוען...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alert Area -->
+            <div id="alertArea"></div>
+
+            <!-- Info Cards -->
+            <div class="info-cards">
+                <div class="info-card">
+                    <i class="fas fa-robot text-primary"></i>
+                    <h5>מערכת אוטונומית</h5>
+                    <p>רצה 24/7 ללא הפסקה ומחפשת אסטרטגיות מנצחות</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-dna text-success"></i>
+                    <h5>אלגוריתם גנטי</h5>
+                    <p>מערבב ומשפר אסטרטגיות בכל דור</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-chart-line text-warning"></i>
+                    <h5>ניתוח מתקדם</h5>
+                    <p>RSI, MACD, Volume, Price Action ועוד</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-money-bill-wave text-info"></i>
+                    <h5>מטרת רווח</h5>
+                    <p>חיפוש אסטרטגיות עם רווחיות גבוהה</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showAlert(message, type = 'info') {
+            const alertArea = document.getElementById('alertArea');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} alert-dismissible fade show`;
+            alert.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            alertArea.appendChild(alert);
+            
+            // הסרת האלרט אחרי 5 שניות
+            setTimeout(() => {
+                if (alert.parentNode) {
+                    alert.parentNode.removeChild(alert);
+                }
+            }, 5000);
+        }
+
+        function showSpinner() {
+            document.querySelector('.spinner').style.display = 'block';
+        }
+
+        function hideSpinner() {
+            document.querySelector('.spinner').style.display = 'none';
+        }
+
+        async function startSystem() {
+            showSpinner();
+            try {
+                const response = await fetch('/api/start', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (result.status === 'started') {
+                    showAlert('✅ ' + result.message, 'success');
+                    setTimeout(() => location.reload(), 2000);
+                } else if (result.status === 'already_running') {
+                    showAlert('ℹ️ ' + result.message, 'info');
+                } else {
+                    showAlert('❌ ' + result.message, 'danger');
+                }
+            } catch (error) {
+                showAlert('❌ שגיאה בחיבור לשרת', 'danger');
+            } finally {
+                hideSpinner();
+            }
+        }
+
+        async function stopSystem() {
+            showSpinner();
+            try {
+                const response = await fetch('/api/stop', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (result.status === 'stopped') {
+                    showAlert('✅ ' + result.message, 'success');
+                    setTimeout(() => location.reload(), 2000);
+                } else {
+                    showAlert('❌ ' + result.message, 'danger');
+                }
+            } catch (error) {
+                showAlert('❌ שגיאה בחיבור לשרת', 'danger');
+            } finally {
+                hideSpinner();
+            }
+        }
+
+        function viewResults() {
+            window.location.href = '/results';
+        }
+
+        // עדכון סטטוס כל 30 שניות
+        setInterval(async () => {
+            try {
+                const response = await fetch('/api/status');
+                const status = await response.json();
+                
+                if (status.status !== '{{ status.status }}') {
+                    location.reload();
+                }
+            } catch (error) {
+                console.log('שגיאה בעדכון סטטוס:', error);
+            }
+        }, 30000);
+    </script>
+</body>
+</html> 

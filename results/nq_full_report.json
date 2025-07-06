@@ -1,0 +1,171 @@
+{
+  "metadata": {
+    "report_date": "2025-07-06 05:23:09",
+    "data_period": "2018-01-01 17:01:00 - 2025-05-26 10:23:00",
+    "total_data_points": 2600467,
+    "analysis_type": "NQ Futures Strategy Analysis"
+  },
+  "executive_summary": {
+    "key_findings": [
+      "נותחו 2,600,467 נקודות נתונים של NQ Futures",
+      "טווח מחירים: $1844.00 - $22653.50",
+      "תנודתיות שנתית: 9.1%",
+      "נפח יומי ממוצע: 392 חוזים"
+    ],
+    "opportunities": [
+      "זוהו 29,399 אותות Golden Cross",
+      "זוהו 477,813 אותות קנייה חזקים",
+      "שעות הפעילות הגבוהות ביותר: 9:00-10:00 בבוקר"
+    ],
+    "risk_factors": [
+      "תנודתיות גבוהה בשעות פתיחת השווקים",
+      "נפח נמוך בשעות הלילה מגביר את הסיכון",
+      "השפעת חדשות מקרו-כלכליות על התנודתיות"
+    ]
+  },
+  "basic_analysis": {
+    "תאריך_ניתוח": "2025-07-06 05:22:40",
+    "נתונים_בסיסיים": {
+      "מספר_נקודות": 2600467,
+      "מחיר_ממוצע": 14507.309195905966,
+      "מחיר_מקסימלי": 22653.5,
+      "מחיר_מינימלי": 1844.0,
+      "נפח_ממוצע": 392.2556925352254,
+      "נפח_מקסימלי": "36243",
+      "תקופת_ניתוח": "2018-01-01 17:01:00 - 2025-05-26 10:23:00"
+    },
+    "דפוסים": {
+      "high_breakouts": "279373",
+      "low_breakouts": "256185",
+      "volume_spikes": "156321",
+      "max_daily_change": 913.855748373102,
+      "min_daily_change": -90.13666390307829
+    },
+    "הזדמנויות_מסחר": {
+      "golden_cross_signals": "29399",
+      "rsi_oversold_signals": "278402",
+      "rsi_overbought_signals": "320459",
+      "macd_bullish_signals": "104499",
+      "bb_oversold_signals": "140772",
+      "bb_overbought_signals": "136443",
+      "strong_buy_signals": "477813",
+      "strong_sell_signals": "388405"
+    },
+    "המלצות": [
+      "יש הרבה אותות קנייה - כדאי לבדוק תקופות פעילות",
+      "אסטרטגיית Golden Cross מראה פוטנציאל טוב",
+      "יש הרבה עליות נפח - כדאי לנתח קשר למחירים"
+    ]
+  },
+  "technical_analysis": {
+    "indicators_performance": {
+      "RSI": {
+        "oversold_signals": "278402",
+        "overbought_signals": "320459"
+      },
+      "MACD": {
+        "bullish_signals": "104499"
+      },
+      "Moving_Averages": {
+        "golden_cross_signals": "29399"
+      },
+      "Bollinger_Bands": {
+        "oversold_signals": "140772",
+        "overbought_signals": "136443"
+      }
+    },
+    "pattern_recognition": {
+      "breakouts": "535558",
+      "volume_spikes": "156321"
+    }
+  },
+  "market_structure": {
+    "trading_hours": {
+      "peak_volume_hours": [
+        9,
+        8,
+        10
+      ],
+      "peak_volatility_hours": [
+        9,
+        17,
+        10
+      ],
+      "best_return_hours": [
+        13,
+        15,
+        10
+      ]
+    },
+    "market_efficiency": {
+      "average_spread": "N/A",
+      "liquidity_score": 387.4298701175842,
+      "market_depth": "N/A"
+    }
+  },
+  "risk_analysis": {
+    "volatility_metrics": {
+      "daily_volatility": 0.005705084843735064,
+      "annualized_volatility": 0.09056541423028062,
+      "volatility_of_volatility": 0.005726665264750341
+    },
+    "risk_metrics": {
+      "var_95": -0.00045129979469671344,
+      "var_99": -0.0010071458115107068,
+      "expected_shortfall": -0.0008289727072623304,
+      "max_drawdown": -0.9025447242554759,
+      "skewness": 1578.986368506963,
+      "kurtosis": 2531932.135821861
+    },
+    "stress_scenarios": {
+      "extreme_moves": "18",
+      "consecutive_losses": 19,
+      "tail_risk": "30"
+    }
+  },
+  "recommendations": {
+    "strategic_recommendations": [
+      "מומלץ לפתח אסטרטגיה המבוססת על שילוב של מספר אינדיקטורים",
+      "כדאי להתמקד בשעות הפעילות הגבוהות (9:00-10:00)",
+      "מומלץ להשתמש בstop-loss של 2-3% מהפוזיציה",
+      "כדאי לשלב ניתוח נפח עם אותות המחיר"
+    ],
+    "tactical_recommendations": [
+      "שימוש באסטרטגיית Golden Cross לזיהוי מגמות ארוכות טווח",
+      "ניצול רמות RSI קיצוניות לכניסות קצרות טווח",
+      "מעקב אחר breakouts עם נפח גבוה",
+      "שימוש ב-Bollinger Bands לזיהוי רמות תמיכה והתנגדות"
+    ],
+    "risk_management": [
+      "הגדרת מגבלות יומיות על הפסדים",
+      "פיזור פוזיציות על פני מספר אסטרטגיות",
+      "מעקב רציף אחר מטריקות הסיכון",
+      "התאמת גודל הפוזיציות לתנודתיות הנוכחית"
+    ]
+  },
+  "appendix": {
+    "methodology": {
+      "data_source": "NQ Futures minute data",
+      "analysis_period": "2018-01-01 17:01:00 - 2025-05-26 10:23:00",
+      "indicators_used": [
+        "RSI",
+        "MACD",
+        "Moving Averages",
+        "Bollinger Bands"
+      ],
+      "risk_free_rate": "2%"
+    },
+    "definitions": {
+      "RSI": "Relative Strength Index - מדד חוזק יחסי",
+      "MACD": "Moving Average Convergence Divergence",
+      "Golden Cross": "חציית ממוצע נע קצר מעל ממוצע נע ארוך",
+      "VaR": "Value at Risk - ערך בסיכון"
+    },
+    "limitations": [
+      "הניתוח מבוסס על נתונים היסטוריים",
+      "תוצאות עבר אינן מבטיחות תוצאות עתיד",
+      "לא נלקחו בחשבון עמלות מסחר",
+      "הניתוח לא כולל השפעות מקרו-כלכליות"
+    ]
+  }
+}

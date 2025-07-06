@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "name": "strategy-hunter",
+  "builds": [
+    {
+      "src": "web/app.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.9"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "web/app.py"
+    }
+  ],
+  "env": {
+    "PYTHONPATH": "/var/task",
+    "FLASK_ENV": "production"
+  },
+  "functions": {
+    "web/app.py": {
+      "maxDuration": 30
+    }
+  }
+} 
